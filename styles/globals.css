@@ -1,0 +1,51 @@
+/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add any global styles here */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8; /* Light background */
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* Add this CSS in your globals.css or in the component's CSS */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-container {
+  display: flex;
+  gap: 20px; /* Adjust the gap between items */
+  animation: marquee  15s linear infinite; /* Adjust speed and timing */
+  width: max-content;
+}
+
+
