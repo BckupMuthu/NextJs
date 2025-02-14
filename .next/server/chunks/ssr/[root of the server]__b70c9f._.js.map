@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 63, "column": 0}, "map": {"version":3,"sources":["file:///Users/mpattan/Documents/saree/saree-sell-app/pages/_app.js"],"sourcesContent":["// pages/_app.js\nimport React from 'react';\nimport '../styles/globals.css'; // Import your global CSS here\nimport { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter\n\nfunction MyApp({ Component, pageProps }) {\n    return (\n        // Wrap the application with Router to enable navigation\n        <Router>\n          <Component {...pageProps} />\n        </Router>\n      ); \n}\n\nexport default MyApp;\n\n"],"names":[],"mappings":"AAAA,gBAAgB;;;;;AAChB;AAEA,qOAA4D,uBAAuB;;;;;AAEnF,SAAS,MAAM,EAAE,SAAS,EAAE,SAAS,EAAE;IACnC,OACI,wDAAwD;kBACxD,qKAAC,qIAAA,CAAA,gBAAM;kBACL,cAAA,qKAAC;YAAW,GAAG,SAAS;;;;;;;;;;;AAGlC;uCAEe"}},
+    {"offset": {"line": 91, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

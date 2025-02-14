@@ -1,0 +1,61 @@
+/* [project]/styles/courier.module.css [client] (css) */
+.courier-module__UAnE3W__formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7fa;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px #0000001a;
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.courier-module__UAnE3W__title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.courier-module__UAnE3W__form {
+  width: 100%;
+}
+
+.courier-module__UAnE3W__input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.courier-module__UAnE3W__submitBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.courier-module__UAnE3W__submitBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.courier-module__UAnE3W__error {
+  color: red;
+  margin-top: 10px;
+}
+
+.courier-module__UAnE3W__success {
+  color: green;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=styles_courier_module_735113.css.map*/
