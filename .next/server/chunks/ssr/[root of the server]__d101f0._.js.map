@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file:///Users/mpattan/Documents/saree/saree-sell-app/pages/_app.js"],"sourcesContent":["// pages/_app.js\nimport '../styles/globals.css'; // Import your global CSS here\n\nfunction MyApp({ Component, pageProps }) {\n return <Component {...pageProps} />;\n}\n\nexport default MyApp;"],"names":[],"mappings":"AAAA,gBAAgB;;;;;;;AAGhB,SAAS,MAAM,EAAE,SAAS,EAAE,SAAS,EAAE;IACtC,qBAAO,qKAAC;QAAW,GAAG,SAAS;;;;;;AAChC;uCAEe"}},
+    {"offset": {"line": 72, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 77, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 77, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

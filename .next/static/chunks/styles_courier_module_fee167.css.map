@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///Users/mpattan/Documents/saree/saree-sell-app/styles/courier.module.css"],"sourcesContent":["/* components/courier.module.css */\n.formContainer {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    background-color: #f4f7fa;\n    padding: 40px;\n    border-radius: 8px;\n    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);\n    width: 100%;\n    max-width: 500px;\n    margin: 50px auto;\n  }\n  \n  /* Use a class for the title */\n  .title {\n    font-size: 24px;\n    color: #333;\n    margin-bottom: 20px;\n  }\n  \n  .form {\n    width: 100%;\n  }\n  \n  .input {\n    width: 100%;\n    padding: 12px;\n    margin-bottom: 20px;\n    border-radius: 8px;\n    border: 1px solid #ddd;\n    font-size: 16px;\n  }\n  \n  .submitBtn {\n    width: 100%;\n    padding: 12px;\n    background-color: #4caf50;\n    color: white;\n    font-size: 16px;\n    border: none;\n    border-radius: 8px;\n    cursor: pointer;\n  }\n  \n  .submitBtn:disabled {\n    background-color: #cccccc;\n    cursor: not-allowed;\n  }\n  \n  .error {\n    color: red;\n    margin-top: 10px;\n  }\n  \n  .success {\n    color: green;\n    margin-top: 10px;\n  }\n  "],"names":[],"mappings":"AACA;;;;;;;;;;;;;;AAeE;;;;;;AAMA;;;;AAIA;;;;;;;;;AASA;;;;;;;;;;;AAWA;;;;;AAKA;;;;;AAKA"}},
+    {"offset": {"line": 59, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
