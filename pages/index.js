@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import CourierForm from "../components/CourierForm"; // Import CourierForm component
 import ZariSareeProcess from "../components/ZariSell";
+import ReviewForm from '../components/ReviewForm'; // Import the form component
+import ReviewList from '../components/ReviewList'; // Import the form component
+
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -25,34 +28,6 @@ export default function Home() {
   const handleCloseModal = () => {
     setShowForm(false);
   };
-
-  // Fake positive reviews for demonstration
-  const reviews = [
-    { name: "Rafiq Thanjavur", review: "Nice Trusted", rating: 5 },
-    {
-      name: "Anita K.",
-      review:
-        "Great experience! I sold my old saree and got cash quickly. Highly recommend!",
-      rating: 5,
-    },
-    {
-      name: "Mahalakshmi",
-      review:
-        "Amazing service! The process was smooth  :) and the price was fair. Would definitely use again.",
-      rating: 4,
-    },
-    {
-      name: "Sonal Singh",
-      review:
-        "Such a hassle-free way to get rid of my old.. silk products. Quick and easy!",
-      rating: 3.5,
-    },
-    {
-      name: "Padmanaban g",
-      review: "I was skeptical at first, but was good trust service!",
-      rating: 5,
-    },
-  ];
 
   return (
     <div
@@ -119,16 +94,14 @@ export default function Home() {
           transition={{ duration: 1.2 }}
         >
           Got sarees that are sitting unused in your wardrobe? Let them find a
-          new home and earn<span className="font-bold"> extra cash </span>in the
+          new home and earn<span className="font-bold"> regardless the condition of the saree, earn extra cash </span>in the
           process. Join thousands of sellers today! We buy{" "}
           <span className="font-bold">Pattu silk sarees</span> and other various
           products from across India, making it convenient for you to sell from
           your city. Our top priority is customer satisfaction, and we are
           dedicated to offering exceptional service.
         </motion.p>
-       
 
-         
         {/* Marquee-style Categories Section */}
         <motion.div
           className="mt-8 overflow-hidden relative w-full"
@@ -254,40 +227,7 @@ export default function Home() {
         </h2>
 
         {/* Displaying reviews */}
-        <div className="space-y-8">
-          {reviews.map((review, idx) => (
-            <div
-              key={idx}
-              className="p-6 bg-gradient-to-r from-pink-100 to-purple-200 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl relative"
-            >
-              {/* Quote Icon */}
-              <div className="absolute top-0 left-4 text-4xl text-gray-400">
-                <span>“</span>
-              </div>
-
-              {/* Review Text */}
-              <p className="text-xl text-gray-800 mb-4">{review.review}</p>
-
-              {/* Reviewer Info */}
-              <div className="flex items-center space-x-4">
-                <span className="font-semibold text-gray-700">
-                  {review.name}
-                </span>
-
-                {/* Star Ratings */}
-                <span className="flex space-x-1 text-yellow-400">
-                  {"★".repeat(review.rating)} {/* Filled Stars */}
-                  {"★"
-                    .repeat(5 - review.rating)
-                    .split("")
-                    .map(() => (
-                      <span className="text-gray-300">★</span>
-                    ))}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ReviewList />
         {showReviewModal && (
           <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 backdrop-blur-sm">
             <motion.div
@@ -306,50 +246,14 @@ export default function Home() {
               </button>
 
               {/* Review Form */}
-              <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-600 mb-6">
-                Add your Review
-              </h1>
-
-              {/* Name Input Field */}
-              <input
-                type="text"
-                placeholder="Enter your name"
-                className="w-full p-4 rounded-lg text-gray-700 mb-4"
-              />
-
-              {/* Rating Section */}
-              <div className="flex space-x-2 mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className={`cursor-pointer text-2xl ${
-                      star <= rating ? "text-yellow-400" : "text-gray-300"
-                    }`}
-                    onClick={() => setRating(star)}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-
-              {/* Review Textarea */}
-              <textarea
-                placeholder="Write your review here..."
-                rows="4"
-                className="w-full p-4 rounded-lg text-gray-700 mb-4"
-              ></textarea>
-
-              {/* Submit Button */}
-              <button className="bg-gradient-to-r from-green-400 to-teal-600 text-white py-2 px-8 rounded-xl">
-                Submit Review
-              </button>
+              <ReviewForm />
             </motion.div>
           </div>
         )}
       </motion.div>
 
       {/* Footer */}
-      <footer className="mt-12 text-gray-600 text-sm">
+      <footer className="mt-12 text-white-600 text-sm">
         <p>© 2025 SareeShop. All rights reserved.</p>
       </footer>
     </div>

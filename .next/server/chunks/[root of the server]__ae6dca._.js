@@ -16,7 +16,7 @@ const mod = __turbopack_external_require__("mongoose", () => require("mongoose")
 
 module.exports = mod;
 }}),
-"[project]/pages/api/pickup.js [api] (ecmascript)": ((__turbopack_context__) => {
+"[project]/pages/api/review.js [api] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, z: __turbopack_require_stub__ } = __turbopack_context__;
@@ -30,21 +30,18 @@ const connectDb = async ()=>{
     if (__TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].connections[0].readyState) return;
     await __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].connect(process.env.MONGODB_URI);
 };
-const AddressSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].Schema({
+// Review Schema
+const ReviewSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].Schema({
     name: {
         type: String,
         required: true
     },
-    address: {
+    review: {
         type: String,
         required: true
     },
-    contactNumber: {
-        type: String,
-        required: true
-    },
-    pinCode: {
-        type: String,
+    rating: {
+        type: Number,
         required: true
     },
     createdAt: {
@@ -52,37 +49,53 @@ const AddressSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
         default: Date.now
     }
 });
-const Address = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].models.Address || __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].model('Address', AddressSchema);
+const Review = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].models.Review || __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].model('Review', ReviewSchema);
 async function handler(req, res) {
     if (req.method === 'POST') {
-        const { name, address, contactNumber, pinCode } = req.body;
-        // Check if any required field is missing
-        if (!name || !address || !contactNumber || !pinCode) {
+        const { name, review, rating } = req.body;
+        if (!name || !review || !rating) {
             return res.status(400).json({
                 success: false,
-                message: 'All fields (name, address, contactNumber, pinCode) are required.'
+                message: 'All fields are required.'
             });
         }
         try {
             await connectDb();
-            // Create a new Address with all required fields
-            const newAddress = new Address({
+            // Create new review
+            const newReview = new Review({
                 name,
-                address,
-                contactNumber,
-                pinCode
+                review,
+                rating
             });
-            // Save the new address to the database
-            await newAddress.save();
+            // Save the review to the database
+            await newReview.save();
             return res.status(200).json({
                 success: true,
-                message: 'Address saved successfully!'
+                message: 'Noted your Review! Lets stay connected!'
             });
         } catch (error) {
-            console.error('Error saving address:', error);
+            console.error('Error saving review:', error);
             return res.status(500).json({
                 success: false,
-                message: 'Something went wrong'
+                message: 'Something went wrong.'
+            });
+        }
+    } else if (req.method === 'GET') {
+        try {
+            await connectDb();
+            // Fetch all reviews from the database
+            const reviews = await Review.find().sort({
+                createdAt: -1
+            }).limit(5); // Sort by most recent first
+            return res.status(200).json({
+                success: true,
+                reviews
+            });
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            return res.status(500).json({
+                success: false,
+                message: 'Something went wrong.'
             });
         }
     } else {
@@ -169,7 +182,7 @@ function hoist(module, name) {
     return undefined;
 } //# sourceMappingURL=helpers.js.map
 }}),
-"[project]/node_modules/next/dist/esm/build/templates/pages-api.js { INNER_PAGE => \"[project]/pages/api/pickup.js [api] (ecmascript)\" } [api] (ecmascript)": ((__turbopack_context__) => {
+"[project]/node_modules/next/dist/esm/build/templates/pages-api.js { INNER_PAGE => \"[project]/pages/api/review.js [api] (ecmascript)\" } [api] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, z: __turbopack_require_stub__ } = __turbopack_context__;
@@ -183,26 +196,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$route$2d$kind$2e$js__$5b$api$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/esm/server/route-kind.js [api] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$build$2f$templates$2f$helpers$2e$js__$5b$api$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/esm/build/templates/helpers.js [api] (ecmascript)");
 // Import the userland code.
-var __TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$pickup$2e$js__$5b$api$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/pages/api/pickup.js [api] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$review$2e$js__$5b$api$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/pages/api/review.js [api] (ecmascript)");
 ;
 ;
 ;
 ;
-const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$build$2f$templates$2f$helpers$2e$js__$5b$api$5d$__$28$ecmascript$29$__["hoist"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$pickup$2e$js__$5b$api$5d$__$28$ecmascript$29$__, 'default');
-const config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$build$2f$templates$2f$helpers$2e$js__$5b$api$5d$__$28$ecmascript$29$__["hoist"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$pickup$2e$js__$5b$api$5d$__$28$ecmascript$29$__, 'config');
+const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$build$2f$templates$2f$helpers$2e$js__$5b$api$5d$__$28$ecmascript$29$__["hoist"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$review$2e$js__$5b$api$5d$__$28$ecmascript$29$__, 'default');
+const config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$build$2f$templates$2f$helpers$2e$js__$5b$api$5d$__$28$ecmascript$29$__["hoist"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$review$2e$js__$5b$api$5d$__$28$ecmascript$29$__, 'config');
 const routeModule = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$route$2d$modules$2f$pages$2d$api$2f$module$2e$compiled$2e$js__$5b$api$5d$__$28$ecmascript$29$__["PagesAPIRouteModule"]({
     definition: {
         kind: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$route$2d$kind$2e$js__$5b$api$5d$__$28$ecmascript$29$__["RouteKind"].PAGES_API,
-        page: "/api/pickup",
-        pathname: "/api/pickup",
+        page: "/api/review",
+        pathname: "/api/review",
         // The following aren't used in production.
         bundlePath: '',
         filename: ''
     },
-    userland: __TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$pickup$2e$js__$5b$api$5d$__$28$ecmascript$29$__
+    userland: __TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$api$2f$review$2e$js__$5b$api$5d$__$28$ecmascript$29$__
 }); //# sourceMappingURL=pages-api.js.map
 }}),
 
 };
 
-//# sourceMappingURL=%5Broot%20of%20the%20server%5D__e83471._.js.map
+//# sourceMappingURL=%5Broot%20of%20the%20server%5D__ae6dca._.js.map
