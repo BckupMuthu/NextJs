@@ -34,13 +34,13 @@ const CourierForm = () => {
 
       const data = await res.json();
       if (data.success) {
-        setSuccess('Pickup request submitted successfully!');
+        setSuccess('Thanks for Choosing us! We Will get back to yyou!');
         setName('');
         setAddress('');
         setContactNumber('');
         setPinCode('');
       } else {
-        setError('Something went wrong. Please try again.');
+        setError('Oh Oh.. Something Fishy');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');
