@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import CourierForm from "../components/CourierForm"; // Import CourierForm component
 import ZariSareeProcess from "../components/ZariSell";
@@ -11,6 +12,29 @@ export default function Home() {
   const [showReviewModal, setShowReviewModal] = useState(false); // Add state for review modal
   const [rating, setRating] = useState(0); // To handle the rating input
   const [showProcess, setShowProcess] = useState(false);
+
+  useEffect(() => {
+    // Dynamically add Google Tag (gtag.js) script
+    const script1 = document.createElement("script");
+    script1.async = true;
+    script1.src = "https://www.googletagmanager.com/gtag/js?id=AW-16890757997";
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement("script");
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16890757997');
+    `;
+    document.head.appendChild(script2);
+
+    // Clean up the script tags when the component unmounts
+    return () => {
+      document.head.removeChild(script1);
+      document.head.removeChild(script2);
+    };
+  }, []);
 
   const handleReviewModalToggle = () => {
     setShowReviewModal(!showReviewModal);
